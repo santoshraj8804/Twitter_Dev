@@ -20,3 +20,21 @@ export const createTweet = async (req, res) => {
         });
     }
 };
+export const getTweet = async (req, res) => {
+    try {
+        const response = await tweetService.get(req.params.id);
+        return res.status(200).json({
+            success: true,
+            message: 'Tweet fetched successfully',
+            data: response,
+            err: {}
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            data: {},
+            err: error
+        });
+    }
+};
